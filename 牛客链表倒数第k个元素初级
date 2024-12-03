@@ -1,0 +1,38 @@
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param pHead ListNode类 
+ * @param k int整型 
+ * @return ListNode类
+ */
+struct ListNode* FindKthToTail(struct ListNode* pHead, int k ) {
+    // write code here
+    struct ListNode* fast=pHead;
+    struct ListNode* slow=pHead;
+
+    int count=1;
+    while(fast&&fast->next)
+    {
+        fast=fast->next;
+        count++;
+    }
+
+    int i=1;
+    if(count-k<0)
+    {
+        return NULL;
+    }
+    while(i<=count-k&&slow)
+    {
+        slow=slow->next;
+        i++;
+    }
+    return slow;
+}
